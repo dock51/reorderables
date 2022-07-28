@@ -350,7 +350,7 @@ class _ReorderableWrapContent extends StatefulWidget {
     this.controller,
     this.reorderAnimationDuration = const Duration(milliseconds: 200),
     this.scrollAnimationDuration = const Duration(milliseconds: 200),
-    required this.enableReorder
+    required this.enableReorder,
   });
 
   final List<Widget>? header;

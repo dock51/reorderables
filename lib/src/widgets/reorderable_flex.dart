@@ -49,6 +49,7 @@ class ReorderableFlex extends StatefulWidget {
     this.buildItemsContainer,
     this.buildDraggableFeedback,
     this.mainAxisAlignment = MainAxisAlignment.start,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
     this.onNoReorder,
     this.onReorderStarted,
     this.scrollController,
@@ -98,6 +99,7 @@ class ReorderableFlex extends StatefulWidget {
   final BuildDraggableFeedback? buildDraggableFeedback;
 
   final MainAxisAlignment mainAxisAlignment;
+  final CrossAxisAlignment crossAxisAlignment;
 
   final bool needsLongPressDraggable;
   final double draggingWidgetOpacity;
@@ -146,6 +148,7 @@ class _ReorderableFlexState extends State<ReorderableFlex> {
           buildItemsContainer: widget.buildItemsContainer,
           buildDraggableFeedback: widget.buildDraggableFeedback,
           mainAxisAlignment: widget.mainAxisAlignment,
+          crossAxisAlignment: widget.crossAxisAlignment,
           scrollController: widget.scrollController,
           needsLongPressDraggable: widget.needsLongPressDraggable,
           draggingWidgetOpacity: widget.draggingWidgetOpacity,
@@ -184,6 +187,7 @@ class _ReorderableFlexContent extends StatefulWidget {
     required this.onNoReorder,
     required this.onReorderStarted,
     required this.mainAxisAlignment,
+    required this.crossAxisAlignment,
     required this.scrollController,
     required this.needsLongPressDraggable,
     required this.draggingWidgetOpacity,
@@ -208,6 +212,7 @@ class _ReorderableFlexContent extends StatefulWidget {
   final EdgeInsets? padding;
 
   final MainAxisAlignment mainAxisAlignment;
+  final CrossAxisAlignment crossAxisAlignment;
   final bool needsLongPressDraggable;
   final double draggingWidgetOpacity;
   final Duration reorderAnimationDuration;
@@ -422,7 +427,8 @@ class _ReorderableFlexContentState extends State<_ReorderableFlexContent>
         return Column(
             mainAxisSize: MainAxisSize.min,
             children: children,
-            mainAxisAlignment: widget.mainAxisAlignment);
+            mainAxisAlignment: widget.mainAxisAlignment,
+            crossAxisAlignment: widget.crossAxisAlignment);
     }
   }
 

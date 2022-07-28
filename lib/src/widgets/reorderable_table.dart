@@ -198,6 +198,7 @@ class ReorderableTable extends StatelessWidget {
         onNoReorder: onNoReorder,
         needsLongPressDraggable: needsLongPressDraggable,
         direction: Axis.vertical,
+        crossAxisAlignment: CrossAxisAlignment.start,
         buildItemsContainer: (BuildContext containerContext, Axis direction,
             List<Widget> children) {
           List<Widget> mapped = borderColor == null
