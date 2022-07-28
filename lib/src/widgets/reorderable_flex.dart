@@ -54,6 +54,7 @@ class ReorderableFlex extends StatefulWidget {
     this.onReorderStarted,
     this.scrollController,
     this.needsLongPressDraggable = true,
+    this.enabled = true,
     this.draggingWidgetOpacity = 0.2,
     this.reorderAnimationDuration,
     this.scrollAnimationDuration,
@@ -101,6 +102,7 @@ class ReorderableFlex extends StatefulWidget {
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
 
+  final bool enabled;
   final bool needsLongPressDraggable;
   final double draggingWidgetOpacity;
 
@@ -150,6 +152,7 @@ class _ReorderableFlexState extends State<ReorderableFlex> {
           mainAxisAlignment: widget.mainAxisAlignment,
           crossAxisAlignment: widget.crossAxisAlignment,
           scrollController: widget.scrollController,
+          enabled: widget.enabled,
           needsLongPressDraggable: widget.needsLongPressDraggable,
           draggingWidgetOpacity: widget.draggingWidgetOpacity,
           reorderAnimationDuration: widget.reorderAnimationDuration ??
@@ -189,6 +192,7 @@ class _ReorderableFlexContent extends StatefulWidget {
     required this.mainAxisAlignment,
     required this.crossAxisAlignment,
     required this.scrollController,
+    required this.enabled,
     required this.needsLongPressDraggable,
     required this.draggingWidgetOpacity,
     required this.buildItemsContainer,
@@ -213,6 +217,7 @@ class _ReorderableFlexContent extends StatefulWidget {
 
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
+  final bool enabled;
   final bool needsLongPressDraggable;
   final double draggingWidgetOpacity;
   final Duration reorderAnimationDuration;
@@ -600,7 +605,7 @@ class _ReorderableFlexContentState extends State<_ReorderableFlexContent>
       } else {
         child = widget.needsLongPressDraggable
             ? LongPressDraggable<int>(
-                maxSimultaneousDrags: 1,
+                maxSimultaneousDrags: widget.enabled ? 1 : 0,
                 axis: widget.direction,
                 data: index,
                 ignoringFeedbackSemantics: false,
@@ -647,7 +652,7 @@ class _ReorderableFlexContentState extends State<_ReorderableFlexContent>
                     onDragEnded(),
               )
             : Draggable<int>(
-                maxSimultaneousDrags: 1,
+                maxSimultaneousDrags: widget.enabled ? 1 : 0,
                 axis: widget.direction,
                 data: index,
                 ignoringFeedbackSemantics: false,

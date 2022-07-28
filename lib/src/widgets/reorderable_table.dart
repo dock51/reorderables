@@ -72,6 +72,7 @@ class ReorderableTable extends StatelessWidget {
     this.scrollAnimationDuration,
     this.ignorePrimaryScrollController = false,
     this.needsLongPressDraggable = true,
+    this.enabled = true,
     Key? key,
     this.borderColor,
   })  : assert(() {
@@ -175,6 +176,7 @@ class ReorderableTable extends StatelessWidget {
   final Duration? scrollAnimationDuration;
   final bool ignorePrimaryScrollController;
 
+  final bool enabled;
   final bool needsLongPressDraggable;
 
   @override
@@ -191,6 +193,7 @@ class ReorderableTable extends StatelessWidget {
         GlobalKey(debugLabel: '$ReorderableTable table key');
 
     return ReorderableFlex(
+        enabled: enabled,
         header: header,
         footer: footer,
         children: children,
@@ -226,7 +229,7 @@ class ReorderableTable extends StatelessWidget {
               key: tableKey,
               direction: direction,
 //          mainAxisAlignment: mainAxisAlignment,
-//          mainAxisSize: MainAxisSize.min,
+              //             mainAxisSize: MainAxisSize.min,
 //          crossAxisAlignment: crossAxisAlignment,
               textDirection: textDirection,
 //          verticalDirection: verticalDirection,
